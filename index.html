@@ -3,6 +3,14 @@
 		<meta charset="utf-8"/>
 		<script src="wasm_exec.js"></script>
 		<script defer>
+function foo(x) {
+        x[0][0] = "set"
+        if (x[1][0] == "set") {
+                console.log("correct")
+        } else {
+                console.log("wrong")
+        }
+}
 			const go = new Go();
 			WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
 				go.run(result.instance);
